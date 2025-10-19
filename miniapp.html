@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberCupid MiniApp</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        text-align: center;
+        padding-top: 60px;
+        background: #fff;
+        color: #222;
+      }
+      h2 {
+        margin: 20px 0;
+        font-weight: 600;
+      }
+      button {
+        margin: 6px;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 8px;
+        background-color: #0088cc;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background-color: #0077b5;
+      }
+    </style>
+
+    <script>
+      let lang = "es";
+      Telegram.WebApp.ready();
+
+      function idioma(id) {
+        lang = id;
+        actualizarTexto();
+      }
+
+      function actualizarTexto() {
+        const t = document.getElementById("titulo");
+        const b = document.getElementById("boton");
+
+        if (lang === "en") {
+          t.innerHTML = "Chat randomly and win WorkCoin!";
+          b.innerHTML = "Find match";
+        } else {
+          t.innerHTML = "¡Chatea al azar y gana WorkCoin!";
+          b.innerHTML = "Buscar pareja";
+        }
+      }
+
+      function buscarPareja() {
+        alert(lang === "es" ? "Buscando..." : "Searching...");
+        Telegram.WebApp.openTelegramLink("t.me/CyberCupidBot");
+      }
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <button onclick="idioma('es')">ES</button>
+      <button onclick="idioma('en')">EN</button>
+    </div>
+
+    <h2 id="titulo">¡Chatea al azar y gana WorkCoin!</h2>
+
+    <button id="boton" onclick="buscarPareja()">Buscar pareja</button>
+  </body>
+</html>
